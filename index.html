@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pet Adoption & Care System </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+/* Accessible, high-contrast, modern, and visually appealing CSS for Pet Adoption & Care System */
+/* Uses Lexend for headings, Open Sans for content; blue/orange/grey theme for contrast and clarity */
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@600;800&family=Open+Sans:wght@400;700&display=swap');
+
+:root {
+  --bg: #f7fafc;
+  --panel: #ffffff;
+  --primary: #1a365d;
+  --primary-accent: #2563eb;
+  --secondary: #f59e42;
+  --secondary-dark: #b45309;
+  --border: #d1d5db;
+  --focus: #2563eb;
+  --danger: #be123c;
+  --success: #059669;
+  --text: #22223b;
+  --muted: #4b5563;
+  --table-row: #f1f5f9;
+  --table-row-alt: #e0e7ef;
+  --shadow: 0 2px 16px 0 rgba(30, 41, 59, 0.07);
+  --radius: 0.7rem;
+  --transition: 0.18s cubic-bezier(.4,0,.2,1);
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Open Sans', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+h1, h2 {
+  font-family: 'Lexend', 'Open Sans', Arial, sans-serif;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin: 2.2rem 0 1.3rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--primary-accent) 50%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin-top: 2.2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+form, .data-section {
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.2rem 2rem 1.5rem 2rem;
+  margin: 2rem auto 1.5rem auto;
+  max-width: 480px;
+  border: 1px solid var(--border);
+  transition: box-shadow var(--transition);
+}
+
+form:focus-within, .data-section:focus-within {
+  box-shadow: 0 0 0 3px var(--focus), var(--shadow);
+}
+
+label {
+  display: block;
+  margin: 1.1rem 0 0.3rem 0;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 0.1px;
+}
+
+input, select, button {
+  font-family: inherit;
+  font-size: 1rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.9rem;
+  margin-bottom: 0.7rem;
+  background: #f8fafc;
+  color: var(--text);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: var(--focus);
+  box-shadow: 0 0 0 2px #2563eb33;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] { appearance: textfield; }
+
+button {
+  background: linear-gradient(90deg, var(--primary-accent) 60%, var(--secondary) 100%);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.45rem;
+  box-shadow: 0 2px 8px #2563eb22;
+  cursor: pointer;
+  padding: 0.7rem 1.6rem;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  position: relative;
+  outline: none;
+}
+
+button:hover, button:focus {
+  background: linear-gradient(90deg, var(--secondary) 60%, var(--primary-accent) 100%);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 24px #2563eb33;
+}
+
+button:active {
+  background: var(--primary-accent);
+  color: #fff;
+  transform: scale(0.98);
+}
+
+button[disabled] {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  form, .data-section { padding: 1rem; max-width: 98vw; }
+  h1 { font-size: 1.2rem; }
+  h2 { font-size: 1.05rem; }
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: 1.5rem 0;
+  overflow: hidden;
+  font-size: 1.02rem;
+}
+
+th, td {
+  padding: 0.85rem 0.7rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.07rem;
+  letter-spacing: 0.5px;
+  border: none;
+}
+
+tr {
+  background: var(--table-row);
+  transition: background 0.18s;
+}
+tr:nth-child(even) {
+  background: var(--table-row-alt);
+}
+tr:hover td {
+  background: #e3eafc;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+#employees, #pets, #reviews {
+  margin-bottom: 2.5rem;
+}
+
+/* Rating stars: make sure they're visible and large */
+td:has(.stars), .stars {
+  font-size: 1.2em;
+  color: var(--secondary-dark);
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+/* Alerts, success, error feedback */
+.alert-success {
+  background: #e0f7ef;
+  color: var(--success);
+  border-left: 4px solid var(--success);
+  padding: 0.7em 1em;
+  margin: 1em 0;
+  border-radius: 0.35em;
+}
+.alert-danger {
+  background: #fff1f2;
+  color: var(--danger);
+  border-left: 4px solid var(--danger);
+  padding: 0.7em 1em;
+  margin: 1em 0;
+  border-radius: 0.35em;
+}
+
+/* Custom scrollbar for better contrast */
+::-webkit-scrollbar { width: 10px; background: #e0e7ef; }
+::-webkit-scrollbar-thumb { background: var(--primary-accent); border-radius: 6px; }
+
+/* Animations */
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+@keyframes slideup {
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+form, .data-section, table { animation: fadein 0.9s; }
+
+/* Icon labels for forms for visual cues */
+label:before {
+  display: inline-block;
+  margin-right: 0.5em;
+  font-size: 1.1em;
+  opacity: 0.8;
+}
+label[for*="Name"]:before { content: '🧑'; }
+label[for*="Email"]:before { content: '📧'; }
+label[for*="Role"]:before { content: '🧑‍💼'; }
+label[for*="Species"]:before { content: '🦴'; }
+label[for*="Breed"]:before { content: '🐕'; }
+label[for*="Age"]:before { content: '🎂'; }
+label[for*="Care"]:before { content: '📝'; }
+label[for*="Photo"]:before { content: '📸'; }
+label[for*="Rating"]:before { content: '⭐'; }
+label[for*="Comment"]:before { content: '💬'; }
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  th, td { padding: 0.5rem 0.3rem; font-size: 0.98rem;}
+  form, .data-section { padding: 0.7rem 0.4rem;}
+}
+
+  </style>
+</head>
+<body>
+  <h1>🐾 Pet Adoption & Care System </h1>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script>
+    // ─────────── YOUR FIREBASE CONFIG ───────────
+    const firebaseConfig = {
+      apiKey: "AIzaSyA-VIn-EJnlElArhjyALRBPCGFCtjesC-Q",
+      authDomain: "petcare-b9b9b.firebaseapp.com",
+      projectId: "petcare-b9b9b",
+      storageBucket: "petcare-b9b9b.firebasestorage.app",
+      messagingSenderId: "737370180655",
+      appId: "1:737370180655:web:d08f6e75f50321d28b4ada",
+      measurementId: "G-1BLRK71TJJ"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // ─────────── UTILITIES ───────────
+    function printStars(r) {
+      return '⭐'.repeat(r) + ` (${r})`;
+    }
+    function createTable(headers, rows) {
+      let t = '<table><thead><tr>';
+      headers.forEach(h => t += `<th>${h}</th>`);
+      t += '</tr></thead><tbody>';
+      rows.forEach(r => {
+        t += '<tr>' + headers.map(h => `<td>${r[h] ?? ''}</td>`).join('') + '</tr>';
+      });
+      t += '</tbody></table>';
+      return t;
+    }
+
+    // ─────────── CORE FUNCTIONS ───────────
+    async function seedDemo() {
+      // wipe & seed
+      await Promise.all([
+        db.collection('employees').get().then(s => s.forEach(d => d.ref.delete())),
+        db.collection('pets').get().then(s => s.forEach(d => d.ref.delete())),
+        db.collection('reviews').get().then(s => s.forEach(d => d.ref.delete()))
+      ]);
+
+      // create employees
+      const ceo = await db.collection('employees').add({ name:'CEO', email:'ceo@pet.com', role:'ceo', verified:true });
+      const man = await db.collection('employees').add({ name:'Manager', email:'manager@pet.com', role:'manager', verified:true });
+      await db.collection('employees').add({ name:'John Doe', email:'employee@pet.com', role:'employee', verified:false });
+
+      // create pets
+      const snow = await db.collection('pets').add({
+        name:'Snowy', species:'Dog', breed:'Labrador', age:2,
+        medicalInfo:{vaccinated:true}, careInstructions:'Feed twice', adoptionStatus:'available', addedBy:man.id
+      });
+      const milo = await db.collection('pets').add({
+        name:'Milo', species:'Cat', breed:'Persian', age:3,
+        medicalInfo:{vaccinated:true}, careInstructions:'Litter daily', adoptionStatus:'available', addedBy:man.id
+      });
+
+      // create reviews
+      await db.collection('reviews').add({ pet:snow.id, userName:'Alice', rating:5, comment:'Adorable!' });
+      await db.collection('reviews').add({ pet:milo.id, userName:'Bob', rating:3, comment:'Quiet.' });
+      await db.collection('reviews').add({ pet:snow.id, userName:'Eve', rating:4, comment:'Friendly!' });
+
+      alert('🌱 Seed complete!');
+      showAll();
+    }
+
+    async function showAll() {
+      // Employees
+      const emps = (await db.collection('employees').get()).docs.map(d=>d.data());
+      document.getElementById('employees').innerHTML = createTable(
+        ['name','email','role','verified'],
+        emps
+      );
+
+      // Pets & avg ratings
+      const pets = (await db.collection('pets').get()).docs.map(d=>({ id:d.id, ...d.data() }));
+      const reviews = (await db.collection('reviews').get()).docs.map(d=>d.data());
+      const ratingMap = {};
+      reviews.forEach(r=>{
+        ratingMap[r.pet] = ratingMap[r.pet]||[];
+        ratingMap[r.pet].push(r.rating);
+      });
+      const petRows = pets.map(p=>{
+        const arr = ratingMap[p.id]||[];
+        const avg = arr.length?Math.round(arr.reduce((a,b)=>a+b,0)/arr.length):0;
+        return {
+          name:p.name, species:p.species, breed:p.breed, age:p.age,
+          status:p.adoptionStatus, rating:arr.length?printStars(avg):'No reviews'
+        };
+      }).sort((a,b)=> parseInt(b.rating.split('(')[1]||0)-parseInt(a.rating.split('(')[1]||0));
+      document.getElementById('pets').innerHTML = createTable(
+        ['name','species','breed','age','status','rating'],
+        petRows
+      );
+
+      // Reviews
+      const reviewRows = reviews.map(r=>{
+        const pet = pets.find(p=>p.id===r.pet);
+        return {
+          pet:pet?.name||'—', user:r.userName, rating:printStars(r.rating), comment:r.comment
+        };
+      });
+      document.getElementById('reviews').innerHTML = createTable(
+        ['pet','user','rating','comment'], reviewRows
+      );
+    }
+
+    async function addEmployee() {
+      const name  = document.getElementById('empName').value;
+      const email = document.getElementById('empEmail').value;
+      const role  = document.getElementById('empRole').value;
+      await db.collection('employees').add({ name,email,role,verified:false });
+      alert('✅ Employee added');
+      showAll();
+    }
+
+    async function addPet() {
+      const name    = document.getElementById('petName').value;
+      const species = document.getElementById('petSpecies').value;
+      const breed   = document.getElementById('petBreed').value;
+      const age     = +document.getElementById('petAge').value;
+      const care    = document.getElementById('petCare').value;
+      const photo   = document.getElementById('petPhoto').value;
+      await db.collection('pets').add({
+        name,species,breed,age,
+        medicalInfo:{vaccinated:true},
+        careInstructions:care,
+        adoptionStatus:'available',
+        photoURL:photo
+      });
+      alert('🐾 Pet added');
+      showAll();
+    }
+
+    async function removePet() {
+      const name = document.getElementById('removeName').value;
+      const snap = await db.collection('pets').where('name','==',name).get();
+      if (snap.empty) return alert('❌ Pet not found');
+      const id = snap.docs[0].id;
+      await db.collection('reviews').where('pet','==',id).get()
+        .then(s=>s.forEach(d=>d.ref.delete()));
+      await db.collection('pets').doc(id).delete();
+      alert('🛫 Pet removed');
+      showAll();
+    }
+
+    async function addReview() {
+      const petName = document.getElementById('revPet').value;
+      const user    = document.getElementById('revUser').value;
+      const rating  = +document.getElementById('revRating').value;
+      const comment = document.getElementById('revComment').value;
+      const snap = await db.collection('pets').where('name','==',petName).get();
+      if (snap.empty) return alert('❌ Pet not found');
+      await db.collection('reviews').add({
+        pet:snap.docs[0].id, userName:user, rating, comment
+      });
+      alert('⭐ Review added');
+      showAll();
+    }
+
+    async function filterPets() {
+      const sp = document.getElementById('filterSp').value;
+      const snap = await db.collection('pets').where('species','==',sp).get();
+      const arr = snap.docs.map(d=>d.data());
+      if (!arr.length) return alert('🔍 No matching pets');
+      document.getElementById('pets').innerHTML = createTable(
+        ['name','breed','age','adoptionStatus'], arr
+      );
+    }
+
+    window.onload = showAll;
+  </script>
+
+  <!-- Controls -->
+  <button onclick="seedDemo()">🌱 Seed Demo Data</button>
+  <button onclick="showAll()">📋 Refresh All</button>
+
+  <h2>➕ Add Employee</h2>
+  <form onsubmit="addEmployee(); return false;">
+    <label>Name: <input id="empName" required></label>
+    <label>Email: <input id="empEmail" required></label>
+    <label>Role:
+      <select id="empRole">
+        <option>employee</option>
+        <option>manager</option>
+        <option>ceo</option>
+      </select>
+    </label>
+    <button type="submit">Add</button>
+  </form>
+
+  <h2>➕ Add Pet</h2>
+  <form onsubmit="addPet(); return false;">
+    <label>Name: <input id="petName" required></label>
+    <label>Species: <input id="petSpecies" required></label>
+    <label>Breed: <input id="petBreed" required></label>
+    <label>Age: <input type="number" id="petAge" required></label>
+    <label>Care Instructions: <input id="petCare" required></label>
+    <label>Photo URL: <input id="petPhoto" required></label>
+    <button type="submit">Add Pet</button>
+  </form>
+
+  <h2>🛫 Remove Pet</h2>
+  <form onsubmit="removePet(); return false;">
+    <label>Pet Name: <input id="removeName" required></label>
+    <button type="submit">Remove</button>
+  </form>
+
+  <h2>⭐ Add Review</h2>
+  <form onsubmit="addReview(); return false;">
+    <label>Pet Name: <input id="revPet" required></label>
+    <label>User Name: <input id="revUser" required></label>
+    <label>Rating (1–5): <input type="number" id="revRating" min="1" max="5" required></label>
+    <label>Comment: <input id="revComment" required></label>
+    <button type="submit">Review</button>
+  </form>
+
+  <h2>🔍 Filter Pets by Species</h2>
+  <form onsubmit="filterPets(); return false;">
+    <label>Species: <input id="filterSp" required></label>
+    <button type="submit">Filter</button>
+  </form>
+
+  <!-- Data Tables -->
+  <h2>👥 Employees</h2>
+  <div id="employees"></div>
+
+  <h2>🐾 Pets</h2>
+  <div id="pets"></div>
+
+  <h2>📝 Reviews</h2>
+  <div id="reviews"></div>
+</body>
+</html>
